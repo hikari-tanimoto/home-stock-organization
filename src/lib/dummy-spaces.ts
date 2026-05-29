@@ -1,5 +1,6 @@
 import { Space } from "./schemas/space";
 
+
 const dummySpaces: Space[] = [
   {
     id: "1",
