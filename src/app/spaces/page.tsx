@@ -1,10 +1,10 @@
-import { dummySpaces } from "@/lib/dummy-spaces";
+import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 
-export default function SpacesPage() {
-  const spaces = [...dummySpaces].sort(
-    (a, b) => b.createdAt.getTime() - a.createdAt.getTime(),
-  );
+export default async function SpacesPage() {
+  const spaces = await prisma.space.findMany({
+    orderBy: { createdAt: "desc" },
+  });
 
   return (
     <main className="mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-8">

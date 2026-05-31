@@ -1,4 +1,4 @@
-import { dummySpaces } from "@/lib/dummy-spaces";
+import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { DeleteButton } from "./DeleteButton";
@@ -9,7 +9,7 @@ export default async function SpaceDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const space = dummySpaces.find((space) => space.id === id);
+  const space = await prisma.space.findUnique({ where: { id } });
   if (!space) {
     notFound();
   }

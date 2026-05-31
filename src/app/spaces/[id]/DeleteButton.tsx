@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { deleteSpace } from "@/app/spaces/actions";
 
 type Props = {
   id: string;
@@ -8,13 +8,10 @@ type Props = {
 };
 
 export function DeleteButton({ id, name }: Props) {
-  const router = useRouter();
-  const handleDelete = () => {
+  const handleDelete = async () => {
     const confirmed = window.confirm(`${name}を削除しますか？`);
     if (!confirmed) return;
-
-    console.log("削除:", id);
-    router.push("/spaces");
+    await deleteSpace(id);
   };
 
   return (

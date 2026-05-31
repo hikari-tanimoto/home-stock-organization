@@ -1,14 +1,12 @@
 "use client";
 
+import { createSpace } from "@/app/spaces/actions";
 import FormField from "@/components/FormField";
 import { spaceFormSchema, type SpaceFormValues } from "@/lib/schemas/space";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
 export default function NewSpacePage() {
-  const router = useRouter();
-
   const {
     register,
     handleSubmit,
@@ -17,9 +15,8 @@ export default function NewSpacePage() {
     resolver: zodResolver(spaceFormSchema),
   });
 
-  const onSubmit = (data: SpaceFormValues) => {
-    console.log(data);
-    router.push("/spaces");
+  const onSubmit = async (data: SpaceFormValues) => {
+    await createSpace(data);
   };
 
   return (
