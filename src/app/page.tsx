@@ -30,7 +30,14 @@ export default async function Home() {
               </Link>
             </div>
           </>
-        ) : null}
+        ) : (
+          <>
+            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">
+              もう、サイズを<span className="text-blue-500">忘れない</span>
+            </h1>
+            <p>自宅の収納スペースを記録して、理想の家具に出会った時も安心</p>
+          </>
+        )}
       </section>
     </main>
   );

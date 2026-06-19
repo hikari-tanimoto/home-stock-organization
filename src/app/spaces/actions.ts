@@ -1,13 +1,19 @@
 "use server";
 
+import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { spaceFormSchema, type SpaceFormValues } from "@/lib/schemas/space";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 export async function createSpace(formData: SpaceFormValues) {
+  const session = await auth();
+  if (!session?.user?.id) {
+    throw new Error("ログインが必要です");
+  }
+
   const parsed = spaceFormSchema.parse(formData);
-  await prisma.space.create({ data: parsed });
+  await prisma.space.create({ data: { ...parsed, userId: session.user.id } });
   revalidatePath("/spaces");
   redirect("/spaces");
 }
