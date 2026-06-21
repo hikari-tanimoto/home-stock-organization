@@ -19,6 +19,16 @@ export async function createSpace(formData: SpaceFormValues) {
 }
 
 export async function updateSpace(id: string, formData: SpaceFormValues) {
+  const session = await auth();
+  if (!session?.user?.id) {
+    throw new Error("ログインが必要です");
+  }
+
+  const existing = await prisma.space.findUnique({ where: { id } });
+  if (!existing || existing.userId !== session.user.id) {
+    throw new Error("権限がありません");
+  }
+  
   const parsed = spaceFormSchema.parse(formData);
   await prisma.space.update({ where: { id }, data: parsed });
   revalidatePath("/spaces");
@@ -27,6 +37,16 @@ export async function updateSpace(id: string, formData: SpaceFormValues) {
 }
 
 export async function deleteSpace(id: string) {
+  const session = await auth();
+  if (!session?.user?.id) {
+    throw new Error("ログインが必要です");
+  }
+
+  const existing = await prisma.space.findUnique({ where: { id } });
+  if (!existing || existing.userId !== session.user.id) {
+    throw new Error("権限がありません");
+  }
+  
   await prisma.space.delete({ where: { id } });
   revalidatePath("/spaces");
   redirect("/spaces");

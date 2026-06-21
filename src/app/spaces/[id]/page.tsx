@@ -1,6 +1,7 @@
+import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { DeleteButton } from "./DeleteButton";
 
 export default async function SpaceDetailPage({
@@ -8,9 +9,14 @@ export default async function SpaceDetailPage({
 }: {
   params: Promise<{ id: string }>;
 }) {
+  const session = await auth();
+  if (!session?.user?.id) {
+    redirect("/");
+  }
+
   const { id } = await params;
   const space = await prisma.space.findUnique({ where: { id } });
-  if (!space) {
+  if (!space || space.userId !== session.user.id) {
     notFound();
   }
   return (

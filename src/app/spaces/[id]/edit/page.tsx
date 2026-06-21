@@ -1,5 +1,6 @@
+import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { EditSpaceForm } from "./EditSpaceForm";
 
 export default async function EditSpacePage({
@@ -7,9 +8,13 @@ export default async function EditSpacePage({
 }: {
   params: Promise<{ id: string }>;
 }) {
+  const session = await auth();
+  if (!session?.user?.id) {
+    redirect("/");
+  }
   const { id } = await params;
   const space = await prisma.space.findUnique({ where: { id } });
-  if (!space) {
+  if (!space || space.userId !== session.user.id) {
     notFound();
   }
 

@@ -1,8 +1,15 @@
+import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export default async function SpacesPage() {
+  const session = await auth();
+  if (!session?.user?.id) {
+    redirect("/");
+  }
   const spaces = await prisma.space.findMany({
+    where: { userId: session.user.id },
     orderBy: { createdAt: "desc" },
   });
 
