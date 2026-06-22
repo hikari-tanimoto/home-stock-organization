@@ -7,8 +7,9 @@ export default {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
       const isOnSpaces = nextUrl.pathname.startsWith("/spaces");
+      const isOnCheck = nextUrl.pathname.startsWith("/check");
 
-      if (isOnSpaces) {
+      if (isOnSpaces || isOnCheck) {
         return isLoggedIn;
       }
       return true;

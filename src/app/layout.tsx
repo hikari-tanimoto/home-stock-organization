@@ -55,6 +55,12 @@ export default async function RootLayout({
                 >
                   追加
                 </Link>
+                <Link
+                  href="/check"
+                  className="text-gray-700 hover:text-gray-900"
+                >
+                  チェック
+                </Link>
               </nav>
             )}
             {session?.user ? (
