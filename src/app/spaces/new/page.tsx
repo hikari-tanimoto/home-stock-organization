@@ -24,7 +24,7 @@ export default function NewSpacePage() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="space-y-4">
           <FormField
-            label="Name"
+            label="場所の名前"
             htmlFor="name"
             errorMessage={errors.name?.message}
           >
@@ -36,7 +36,7 @@ export default function NewSpacePage() {
             />
           </FormField>
           <FormField
-            label="Width"
+            label="幅（mm）"
             htmlFor="width"
             errorMessage={errors.width?.message}
           >
@@ -48,19 +48,7 @@ export default function NewSpacePage() {
             />
           </FormField>
           <FormField
-            label="Depth"
-            htmlFor="depth"
-            errorMessage={errors.depth?.message}
-          >
-            <input
-              type="number"
-              id="depth"
-              {...register("depth", { valueAsNumber: true })}
-              className="block w-full rounded-sm border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm border p-1"
-            />
-          </FormField>
-          <FormField
-            label="Height"
+            label="高さ（mm）"
             htmlFor="height"
             errorMessage={errors.height?.message}
           >
@@ -72,7 +60,19 @@ export default function NewSpacePage() {
             />
           </FormField>
           <FormField
-            label="Note"
+            label="奥行き（mm）"
+            htmlFor="depth"
+            errorMessage={errors.depth?.message}
+          >
+            <input
+              type="number"
+              id="depth"
+              {...register("depth", { valueAsNumber: true })}
+              className="block w-full rounded-sm border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm border p-1"
+            />
+          </FormField>
+          <FormField
+            label="メモ"
             htmlFor="note"
             errorMessage={errors.note?.message}
           >
@@ -86,7 +86,7 @@ export default function NewSpacePage() {
             type="submit"
             className="bg-blue-500 text-white px-4 py-2 rounded-md"
           >
-            Submit
+            追加する
           </button>
         </div>
       </form>

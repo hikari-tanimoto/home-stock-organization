@@ -22,11 +22,11 @@ export default async function SpaceDetailPage({
   return (
     <main className="mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-8">
       <h1 className="text-2xl font-bold mb-4">{space.name}</h1>
-      <p>Created At:{space.createdAt.toLocaleDateString("ja-JP")}</p>
-      <p>Updated At:{space.updatedAt.toLocaleDateString("ja-JP")}</p>
-      <p>W:{space.width}mm</p>
-      <p>D:{space.depth}mm</p>
-      <p>H:{space.height}mm</p>
+      <p>作成日:{space.createdAt.toLocaleDateString("ja-JP")}</p>
+      <p>更新日:{space.updatedAt.toLocaleDateString("ja-JP")}</p>
+      <p>幅:{space.width}mm</p>
+      <p>高さ:{space.height}mm</p>
+      <p>奥行き:{space.depth}mm</p>
       {space.note && <p>{space.note}</p>}
       <nav className="flex gap-2 mt-4">
         <Link
