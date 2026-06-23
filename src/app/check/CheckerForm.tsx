@@ -1,4 +1,4 @@
-"user client";
+"use client";
 
 import type { Space } from "@/generated/prisma/client";
 import { fitsIn } from "@/lib/fits";
@@ -23,14 +23,55 @@ export function CheckerForm({ spaces }: Props) {
 
   return (
     <div>
-      {/* 入力欄（W/D/H） */}
-      <div className="grid grid-cols-3 gap-3">
-        {/* width input → setWidth */}
-        {/* depth input → setDepth */}
-        {/* height input → setHeight */}
+      <div>
+        <div className="flex items-center">
+          <label
+            htmlFor="check-width"
+            className="flex-1 text-sm font-medium text-blue-700"
+          >
+            幅（mm）
+          </label>
+          <input
+            id="check-width"
+            type="number"
+            value={width}
+            onChange={(e) => setWidth(e.target.value)}
+            className="flex-2 mt-1 w-full rounded-lg border border-gray-300 px-3 py-2"
+          />
+        </div>
+        <div className="flex items-center">
+          <label
+            htmlFor="check-height"
+            className="flex-1 text-sm font-medium text-purple-700"
+          >
+            高さ（mm）
+          </label>
+          <input
+            id="check-height"
+            type="number"
+            value={height}
+            onChange={(e) => setHeight(e.target.value)}
+            className="flex-2 mt-1 w-full rounded-lg border border-gray-300 px-3 py-2"
+          />
+        </div>
+        <div className="flex items-center">
+          <label
+            htmlFor="check-depth"
+            className="flex-1 text-sm font-medium text-emerald-700"
+          >
+            奥行き（mm）
+          </label>
+          <input
+            id="check-depth"
+            type="number"
+            value={depth}
+            onChange={(e) => setDepth(e.target.value)}
+            className="flex-2 mt-1 w-full rounded-lg border border-gray-300 px-3 py-2"
+          />
+        </div>
       </div>
 
-      {/* 結果表示 */}
+      <h2 className="mt-20 text-2xl font-bold ">チェック結果</h2>
       {allFilled && (
         <ul className="mt-6 space-y-2">
           {spaces.map((space) => {

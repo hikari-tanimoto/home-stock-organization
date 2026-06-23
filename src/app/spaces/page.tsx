@@ -53,13 +53,13 @@ export default async function SpacesPage() {
                 </p>
                 <div className="flex flex-wrap gap-2">
                   <p className="bg-blue-50 text-blue-700 ring-1 ring-blue-200 inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-sm font-medium">
-                    W:{space.width}cm
+                    W:{space.width}mm
                   </p>
                   <p className="bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200 inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-sm font-medium">
-                    D:{space.depth}cm
+                    D:{space.depth}mm
                   </p>
                   <p className="bg-purple-50 text-purple-700 ring-1 ring-purple-200 inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-sm font-medium">
-                    H:{space.height}cm
+                    H:{space.height}mm
                   </p>
                 </div>
                 {space.note && (

@@ -24,9 +24,9 @@ export default async function SpaceDetailPage({
       <h1 className="text-2xl font-bold mb-4">{space.name}</h1>
       <p>Created At:{space.createdAt.toLocaleDateString("ja-JP")}</p>
       <p>Updated At:{space.updatedAt.toLocaleDateString("ja-JP")}</p>
-      <p>W:{space.width}cm</p>
-      <p>D:{space.depth}cm</p>
-      <p>H:{space.height}cm</p>
+      <p>W:{space.width}mm</p>
+      <p>D:{space.depth}mm</p>
+      <p>H:{space.height}mm</p>
       {space.note && <p>{space.note}</p>}
       <nav className="flex gap-2 mt-4">
         <Link
