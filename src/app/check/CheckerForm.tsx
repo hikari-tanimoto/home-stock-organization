@@ -34,9 +34,10 @@ export function CheckerForm({ spaces }: Props) {
           <input
             id="check-width"
             type="number"
+            inputMode="decimal"
             value={width}
             onChange={(e) => setWidth(e.target.value)}
-            className="flex-2 mt-1 w-full rounded-lg border border-gray-300 px-3 py-2"
+            className="flex-2 mt-1 w-full rounded-lg border border-gray-300 px-3 py-4"
           />
         </div>
         <div className="flex items-center">
@@ -49,9 +50,10 @@ export function CheckerForm({ spaces }: Props) {
           <input
             id="check-height"
             type="number"
+            inputMode="decimal"
             value={height}
             onChange={(e) => setHeight(e.target.value)}
-            className="flex-2 mt-1 w-full rounded-lg border border-gray-300 px-3 py-2"
+            className="flex-2 mt-1 w-full rounded-lg border border-gray-300 px-3 py-4"
           />
         </div>
         <div className="flex items-center">
@@ -64,9 +66,10 @@ export function CheckerForm({ spaces }: Props) {
           <input
             id="check-depth"
             type="number"
+            inputMode="decimal"
             value={depth}
             onChange={(e) => setDepth(e.target.value)}
-            className="flex-2 mt-1 w-full rounded-lg border border-gray-300 px-3 py-2"
+            className="flex-2 mt-1 w-full rounded-lg border border-gray-300 px-3 py-4"
           />
         </div>
       </div>

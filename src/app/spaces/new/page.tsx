@@ -10,7 +10,7 @@ export default function NewSpacePage() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<SpaceFormValues>({
     resolver: zodResolver(spaceFormSchema),
   });
@@ -32,7 +32,7 @@ export default function NewSpacePage() {
               type="text"
               id="name"
               {...register("name")}
-              className="block w-full rounded-sm border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm border p-1"
+              className="block w-full rounded-sm border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-base border py-4 px-2"
             />
           </FormField>
           <FormField
@@ -42,9 +42,10 @@ export default function NewSpacePage() {
           >
             <input
               type="number"
+              inputMode="decimal"
               id="width"
               {...register("width", { valueAsNumber: true })}
-              className="block w-full rounded-sm border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm border p-1"
+              className="block w-full rounded-sm border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-base border py-4 px-2"
             />
           </FormField>
           <FormField
@@ -54,9 +55,10 @@ export default function NewSpacePage() {
           >
             <input
               type="number"
+              inputMode="decimal"
               id="height"
               {...register("height", { valueAsNumber: true })}
-              className="block w-full rounded-sm border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm border p-1"
+              className="block w-full rounded-sm border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-base border py-4 px-2"
             />
           </FormField>
           <FormField
@@ -66,9 +68,10 @@ export default function NewSpacePage() {
           >
             <input
               type="number"
+              inputMode="decimal"
               id="depth"
               {...register("depth", { valueAsNumber: true })}
-              className="block w-full rounded-sm border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm border p-1"
+              className="block w-full rounded-sm border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-base border py-4 px-2"
             />
           </FormField>
           <FormField
@@ -79,14 +82,15 @@ export default function NewSpacePage() {
             <textarea
               id="note"
               {...register("note")}
-              className="block w-full rounded-sm border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm border p-1"
+              className="block w-full rounded-sm border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-base border py-4 px-2"
             />
           </FormField>
           <button
             type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded-md"
+            disabled={isSubmitting}
+            className="bg-blue-500 text-white p-4 rounded-md disabled:opacity-50 disabled:cursor-not-allowed w-full"
           >
-            追加する
+            {isSubmitting ? "追加中..." : "追加する"}
           </button>
         </div>
       </form>
