@@ -16,9 +16,9 @@ export default async function CheckPage() {
 
   return (
     <main className="mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-8">
-      <h1 className="text-2xl font-bold mb-4">サイズチェック</h1>
+      <h1 className="text-2xl font-bold mb-4">家具サイズチェック</h1>
       <p className="text-sm text-gray-600 mb-6">
-        買いたい家具のサイズを入力すると、どの収納に入るか分かります。
+        買いたい家具のサイズを入力すると、どの場所に入るか分かります。
       </p>
       <CheckerForm spaces={spaces} />
     </main>

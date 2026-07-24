@@ -42,24 +42,24 @@ export default async function RootLayout({
               📦 収納サイズ管理
             </Link>
             {session?.user && (
-              <nav className="flex gap-4 text-sm">
+              <nav className="flex gap-4 text-md">
                 <Link
                   href="/spaces"
                   className="text-gray-700 hover:text-gray-900"
                 >
-                  場所一覧
+                  収納場所一覧
                 </Link>
                 <Link
                   href="/spaces/new"
                   className="text-gray-700 hover:text-gray-900"
                 >
-                  追加
+                  収納場所追加
                 </Link>
                 <Link
                   href="/check"
                   className="text-gray-700 hover:text-gray-900"
                 >
-                  チェック
+                  家具サイズチェック
                 </Link>
               </nav>
             )}
@@ -74,9 +74,6 @@ export default async function RootLayout({
                     className="rounded-full"
                   />
                 )}
-                <span className="text-gray-700">
-                  {session.user.name ?? session.user.email}
-                </span>
                 <form action={signOutAction}>
                   <button
                     type="submit"

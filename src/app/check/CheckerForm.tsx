@@ -74,18 +74,20 @@ export function CheckerForm({ spaces }: Props) {
         </div>
       </div>
 
-      <h2 className="mt-20 text-2xl font-bold ">チェック結果</h2>
       {allFilled && (
-        <ul className="mt-6 space-y-2">
-          {spaces.map((space) => {
-            const ok = fitsIn(item, space);
-            return (
-              <li key={space.id}>
-                {ok ? "⭕️" : "❌"} {space.name}
-              </li>
-            );
-          })}
-        </ul>
+        <>
+          <h2 className="mt-20 text-2xl font-bold ">家具サイズチェック結果</h2>
+          <ul className="mt-6 space-y-2">
+            {spaces.map((space) => {
+              const ok = fitsIn(item, space);
+              return (
+                <li key={space.id}>
+                  {ok ? "⭕️" : "❌"} {space.name}
+                </li>
+              );
+            })}
+          </ul>
+        </>
       )}
     </div>
   );

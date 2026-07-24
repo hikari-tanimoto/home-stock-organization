@@ -1,7 +1,8 @@
 import { auth } from "@/auth";
+import { SpaceForm } from "@/components/SpaceForm";
 import { prisma } from "@/lib/prisma";
 import { notFound, redirect } from "next/navigation";
-import { EditSpaceForm } from "./EditSpaceForm";
+import { updateSpace } from "../../actions";
 
 export default async function EditSpacePage({
   params,
@@ -21,7 +22,18 @@ export default async function EditSpacePage({
   return (
     <main className="mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-8">
       <h1 className="text-2xl font-bold mb-4">{space.name}を編集する</h1>
-      <EditSpaceForm space={space} />
+      <SpaceForm
+        action={updateSpace.bind(null, space.id)}
+        defaultValues={{
+          name: space.name,
+          width: space.width,
+          depth: space.depth,
+          height: space.height,
+          note: space.note ?? undefined,
+        }}
+        submitLabel="更新する"
+        submittingLabel="更新中..."
+      />
     </main>
   );
 }

@@ -1,38 +1,38 @@
 "use client";
 
 import FormField from "@/components/FormField";
-import type { Space } from "@/generated/prisma/client";
 import { spaceFormSchema, type SpaceFormValues } from "@/lib/schemas/space";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { updateSpace } from "../../actions";
 
 type Props = {
-  space: Space;
+  action: (data: SpaceFormValues) => Promise<void>;
+  defaultValues?: SpaceFormValues;
+  submitLabel: string;
+  submittingLabel: string;
 };
 
-export function EditSpaceForm({ space }: Props) {
+export function SpaceForm({
+  action,
+  defaultValues,
+  submitLabel,
+  submittingLabel,
+}: Props) {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<SpaceFormValues>({
     resolver: zodResolver(spaceFormSchema),
-    defaultValues: {
-      name: space.name,
-      width: space.width,
-      depth: space.depth,
-      height: space.height,
-      note: space.note ?? undefined,
-    },
+    defaultValues,
   });
 
   const onSubmit = async (data: SpaceFormValues) => {
-    await updateSpace(space.id, data);
+    await action(data);
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
       <div className="space-y-4">
         <FormField
           label="場所の名前"
@@ -99,9 +99,9 @@ export function EditSpaceForm({ space }: Props) {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="bg-blue-500 text-white p-4 rounded-md disabled:opacity-50 disabled:cursor-not-allowed w-full mt-6"
+          className="bg-blue-500 text-white p-4 rounded-md disabled:opacity-50 disabled:cursor-not-allowed w-full"
         >
-          {isSubmitting ? "更新中..." : "更新する"}
+          {isSubmitting ? submittingLabel : submitLabel}
         </button>
       </div>
     </form>
